@@ -1,103 +1,177 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DOMINATION WORLD</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DOMINATION WORLD</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #1a1a2e, #000);
-      color: white;
-      text-align: center;
-      overflow-x: hidden;
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
 
-    .container {
-      padding: 80px 20px;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    h1 {
-      font-size: 60px;
-      letter-spacing: 4px;
-      color: #00ffe1;
-      text-shadow: 0 0 20px #00ffe1, 0 0 40px #00ffe1;
-      margin-bottom: 10px;
-    }
+body {
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  background: #000;
+  overflow-x: hidden;
+}
 
-    h2 {
-      color: #ffffffaa;
-      margin-bottom: 40px;
-    }
+/* BACKGROUND ANIMATION */
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top, #0ff 0%, transparent 40%),
+              radial-gradient(circle at bottom, #f0f 0%, transparent 40%),
+              #000;
+  filter: blur(60px);
+  animation: move 10s infinite alternate;
+  z-index: -1;
+}
 
-    .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(0,255,225,0.3);
-      border-radius: 15px;
-      padding: 30px;
-      max-width: 500px;
-      margin: 20px auto;
-      box-shadow: 0 0 20px rgba(0,255,225,0.2);
-    }
+@keyframes move {
+  0% { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.2) translateY(30px); }
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 25px;
-      border-radius: 10px;
-      background: #00ffe1;
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+/* HEADER */
+header {
+  text-align: center;
+  padding: 100px 20px 40px;
+}
 
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffe1;
-    }
+h1 {
+  font-size: 70px;
+  color: #00ffe1;
+  text-shadow: 0 0 20px #00ffe1, 0 0 60px #00ffe1;
+  letter-spacing: 5px;
+}
 
-    .ip {
-      font-size: 22px;
-      margin-top: 10px;
-      color: #ffcc00;
-    }
+h2 {
+  margin-top: 10px;
+  color: #ffffffaa;
+  font-weight: 400;
+}
 
-    footer {
-      margin-top: 60px;
-      color: #ffffff55;
-      font-size: 14px;
-    }
-  </style>
+/* CARDS */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+}
+
+.card {
+  width: 320px;
+  padding: 25px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(0,255,225,0.3);
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0,255,225,0.15);
+  transition: 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 40px rgba(0,255,225,0.4);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  color: #00ffe1;
+}
+
+.card p {
+  font-size: 14px;
+  color: #ffffffaa;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: #00ffe1;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #00ffe1;
+}
+
+/* IP BOX */
+.ip {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #ffcc00;
+  cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  margin: 60px 0 20px;
+  color: #ffffff55;
+  font-size: 12px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>DOMINATION WORLD</h1>
-    <h2>Rejoins l'aventure ultime Minecraft</h2>
+<div class="background"></div>
 
-    <div class="card">
-      <h3>📦 Téléchargement</h3>
-      <p>Récupère le pack / fichier du serveur ici :</p>
-      <a class="btn" href="https://www.mediafire.com/" target="_blank">
-        Télécharger
-      </a>
-    </div>
+<header>
+  <h1>DOMINATION WORLD</h1>
+  <h2>Le serveur Minecraft ultime arrive</h2>
+</header>
 
-    <div class="card">
-      <h3>🔥 Serveur Minecraft</h3>
-      <p>Connecte-toi maintenant :</p>
-      <div class="ip">mc.hosteria-ddy.com:21502</div>
-      <p>Version recommandée : 1.8 - 1.20+</p>
-    </div>
+<div class="container">
 
-    <footer>
-      © DOMINATION WORLD - Tous droits réservés
-    </footer>
+  <div class="card">
+    <h3>📦 DOWNLOAD</h3>
+    <p>Télécharge le pack officiel du serveur</p>
+    <a class="btn" href="https://www.clictune.com/mHUW" target="_blank">
+      Télécharger
+    </a>
   </div>
+
+  <div class="card">
+    <h3>🔥 IP DU SERVEUR</h3>
+    <p>Clique pour copier :</p>
+    <div class="ip" onclick="copyIP()">mc.hosteria-ddy.com:21502</div>
+  </div>
+
+  <div class="card">
+    <h3>⚡ VERSION</h3>
+    <p>Compatible 1.20.1+</p>
+    <p>Optimisé PvP / Survival / Events</p>
+  </div>
+
+</div>
+
+<footer>
+  © DOMINATION WORLD - Tous droits réservés
+</footer>
+
+<script>
+function copyIP() {
+  navigator.clipboard.writeText("mc.hosteria-ddy.com:21502");
+  alert("IP copiée !");
+}
+</script>
 
 </body>
 </html>
