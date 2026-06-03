@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>DOMINATION WORLD</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
+<style>
 * {
   margin: 0;
   padding: 0;
@@ -16,114 +16,140 @@
 
 body {
   font-family: 'Orbitron', sans-serif;
+  background: black;
   color: white;
-  background: #000;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
-/* BACKGROUND ANIMATION */
-.background {
+/* ===== BACKGROUND PARTICLES ===== */
+canvas {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at top, #0ff 0%, transparent 40%),
-              radial-gradient(circle at bottom, #f0f 0%, transparent 40%),
-              #000;
-  filter: blur(60px);
-  animation: move 10s infinite alternate;
-  z-index: -1;
+  top: 0;
+  left: 0;
+  z-index: -2;
 }
 
-@keyframes move {
-  0% { transform: scale(1) translateY(0); }
-  100% { transform: scale(1.2) translateY(30px); }
-}
-
-/* HEADER */
-header {
+/* ===== HERO ===== */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 100px 20px 40px;
+  padding: 20px;
 }
 
-h1 {
-  font-size: 70px;
+.title {
+  font-size: 80px;
   color: #00ffe1;
-  text-shadow: 0 0 20px #00ffe1, 0 0 60px #00ffe1;
-  letter-spacing: 5px;
+  text-shadow: 0 0 20px #00ffe1, 0 0 80px #00ffe1;
+  animation: glow 2s infinite alternate;
 }
 
-h2 {
+@keyframes glow {
+  from { filter: drop-shadow(0 0 10px #00ffe1); }
+  to { filter: drop-shadow(0 0 30px #00ffe1); }
+}
+
+.subtitle {
   margin-top: 10px;
   color: #ffffffaa;
-  font-weight: 400;
+  font-size: 18px;
 }
 
-/* CARDS */
-.container {
+/* ===== BUTTONS ===== */
+.buttons {
+  margin-top: 40px;
   display: flex;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  padding: 40px;
 }
 
-.card {
-  width: 320px;
-  padding: 25px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(0,255,225,0.3);
-  border-radius: 15px;
-  box-shadow: 0 0 25px rgba(0,255,225,0.15);
-  transition: 0.3s;
-  backdrop-filter: blur(10px);
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 40px rgba(0,255,225,0.4);
-}
-
-.card h3 {
-  margin-bottom: 10px;
-  color: #00ffe1;
-}
-
-.card p {
-  font-size: 14px;
-  color: #ffffffaa;
-}
-
-/* BUTTON */
 .btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  background: #00ffe1;
+  padding: 15px 25px;
+  border-radius: 12px;
+  border: 1px solid #00ffe1;
   color: black;
+  background: #00ffe1;
+  cursor: pointer;
   font-weight: bold;
-  text-decoration: none;
   transition: 0.3s;
+  box-shadow: 0 0 20px #00ffe1;
 }
 
 .btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 20px #00ffe1;
+  box-shadow: 0 0 40px #00ffe1;
 }
 
-/* IP BOX */
+/* ===== IP BOX ===== */
 .ip {
-  margin-top: 10px;
-  font-size: 18px;
+  margin-top: 20px;
+  font-size: 22px;
   color: #ffcc00;
   cursor: pointer;
+  padding: 10px 20px;
+  border: 1px solid #ffcc00;
+  border-radius: 10px;
+  transition: 0.3s;
 }
 
-/* FOOTER */
+.ip:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #ffcc00;
+}
+
+/* ===== GLITCH EFFECT ===== */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: "DOMINATION WORLD";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.glitch::before {
+  color: #ff00ff;
+  animation: glitch 0.3s infinite;
+}
+
+.glitch::after {
+  color: #00ffff;
+  animation: glitch 0.3s infinite reverse;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* ===== FADE IN ===== */
+.hero * {
+  animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
   text-align: center;
-  margin: 60px 0 20px;
-  color: #ffffff55;
+  color: #ffffff33;
   font-size: 12px;
 }
 </style>
@@ -131,46 +157,84 @@ footer {
 
 <body>
 
-<div class="background"></div>
+<canvas id="particles"></canvas>
 
-<header>
-  <h1>DOMINATION WORLD</h1>
-  <h2>Le serveur Minecraft ultime arrive</h2>
-</header>
+<div class="hero">
 
-<div class="container">
+  <div class="glitch title">DOMINATION WORLD</div>
 
-  <div class="card">
-    <h3>📦 DOWNLOAD</h3>
-    <p>Télécharge le pack officiel du serveur</p>
+  <div class="subtitle">
+    Le serveur Minecraft ultime — PvP • Survival • Events
+  </div>
+
+  <div class="ip" onclick="copyIP()">
+    mc.hosteria-ddy.com:21502
+  </div>
+
+  <div class="buttons">
+
     <a class="btn" href="https://www.clictune.com/mHUW" target="_blank">
-      Télécharger
+      📦 Télécharger
     </a>
-  </div>
 
-  <div class="card">
-    <h3>🔥 IP DU SERVEUR</h3>
-    <p>Clique pour copier :</p>
-    <div class="ip" onclick="copyIP()">mc.hosteria-ddy.com:21502</div>
-  </div>
+    <a class="btn" href="#">
+      ⚔ Rejoindre maintenant
+    </a>
 
-  <div class="card">
-    <h3>⚡ VERSION</h3>
-    <p>Compatible 1.20.1+</p>
-    <p>Optimisé PvP / Survival / Events</p>
   </div>
 
 </div>
 
 <footer>
-  © DOMINATION WORLD - Tous droits réservés
+© DOMINATION WORLD - Built for legends
 </footer>
 
 <script>
 function copyIP() {
   navigator.clipboard.writeText("mc.hosteria-ddy.com:21502");
-  alert("IP copiée !");
+  alert("🔥 IP copiée !");
 }
+
+/* ===== PARTICLES SYSTEM ===== */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2,
+    dx: (Math.random() - 0.5),
+    dy: (Math.random() - 0.5)
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#00ffe1";
+
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  });
+
+  requestAnimationFrame(draw);
+}
+
+draw();
 </script>
 
 </body>
